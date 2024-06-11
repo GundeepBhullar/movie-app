@@ -34,7 +34,7 @@ export class MovieService implements OnModuleInit{
         }
     }
     async create(createMovieDto: CreateMovieDto): Promise<Movie> {
-        const movie = new Movie();
+        const movie: Movie = new Movie();
         movie.name = createMovieDto.name;
         return this.movieRepository.save(movie);
     }

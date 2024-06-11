@@ -15,13 +15,14 @@ export class AuthService {
         const user = await this.usersService.findOne(username);
         if (user && await bcrypt.compare(pass, user.password)) {
             const { password, ...result } = user;
+            //create token
             return result;
         }
         return null;
     }
 
-
-    async login(user: any) {
+     // this function name is changed from login to generateToken.
+    async generateToken(user: any) {
         const payload = { username: user.username, sub: user.userId};
         return {
             access_token: this.jwtService.sign(payload)
